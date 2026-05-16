@@ -20,7 +20,7 @@ Regulators at FERC, state public utility commissions, and ISO planning teams cur
 
 For each active generation interconnection request, the model outputs:
 
-- **Viability score (0–1):** A calibrated probability that the project will reach commercial operation, based on patterns learned from 22,587 historical queue outcomes
+- **Viability score (0–1):** A calibrated probability that the project will reach commercial operation, based on patterns learned from 12,100 historical queue outcomes (2010–2017 training cohort)
 - **Confidence flag:** `validated` (model performance confirmed via bootstrap CI) or `unvalidated` (insufficient test data in that region)
 
 The top 10% of projects ranked by the model capture **31% of all operational outcomes** — a 3.1x lift over random selection.
@@ -100,9 +100,9 @@ queue-viability/
 │   ├── 01_data_inventory.ipynb          # Download and verify all raw data
 │   ├── 02_eda_queue_outcomes.ipynb      # EDA, label feasibility, go/no-go
 │   ├── 03_feature_engineering.ipynb     # Internal feature construction
-│   ├── 04_external_joins.ipynb          # EIA price join, train/test split
+│   ├── 04_baseline_model.ipynb          # EIA price join, train/test split
 │   ├── 05_baseline_and_xgboost.ipynb    # Logistic regression + XGBoost
-│   ├── 06_shap_calibration.ipynb        # SHAP, calibration, regional eval
+│   ├── 06_shap_calibration_evaluation.ipynb  # SHAP, calibration, regional eval
 │   └── 07_score_live_queue.ipynb        # Score all active projects
 ├── models/
 │   ├── xgboost_v1.json                  # Saved XGBoost model
@@ -116,7 +116,7 @@ queue-viability/
 ├── reports/
 │   ├── figures/                         # All saved charts and SHAP plots
 │   ├── executive_summary.md             # 2-page non-technical summary
-│   ├── feasability.md                   # Determine whether or not there is a real use case
+│   ├── feasibility.md                   # Determine whether or not there is a real use case
 │   ├── day5_results.md                  # Model training results
 │   ├── day6_results.md                  # Evaluation and calibration results
 │   └── day7_results.md                  # Live queue scoring results
@@ -133,7 +133,7 @@ All notebooks are designed for Google Colab + Google Drive. Each notebook mounts
 git clone https://github.com/rohanmyers/queue-viability.git
 ```
 
-**2. Download data manually** (see `data/README.md` for links and filenames) and place in your Google Drive at `My Drive/queue-viability/data/raw/`
+**2. Download data manually** and place in your Google Drive at `My Drive/queue-viability/data/raw/`
 
 **3. Run notebooks in order** using the Open in Colab badges at the top of each notebook
 
